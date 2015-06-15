@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "FeedBack";
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title></title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet">
+    <script src="~/Scripts/bootstrap.js"></script>
+</head>
+<body>
+
+    <div>
+        <h3 style="margin-left:200px; font-weight:500 ">Feed Back</h3>
+        <hr style="margin-left:200px; width:900px" />
+    </div>
+
+    <div>
+        <form action="../Home" class="form-horizontal" role="form">
+
+            <div class="form-group">
+                <label class="control-label col-lg-3" for="email">Email:</label>
+                <div class="col-lg-4">
+                    <input type="email" class="form-control" name="email" placeholder="Enter Email" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-lg-3" for="note">Note:</label>
+                <div class="col-lg-4">
+                    <textarea class="form-control" name="note" placeholder="Write Your Message"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-lg-offset-3 col-lg-10">
+                    <input type="submit" value="Submit" class="btn btn-default" />
+                </div>
+            </div>
+
+        </form>
+    </div>
+</body>
+</html>

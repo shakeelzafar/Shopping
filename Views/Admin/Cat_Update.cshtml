@@ -1,0 +1,72 @@
+﻿@using MVC.Models
+@model  MVC.Models.Categories
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+
+    }        
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet">
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+</head>
+<body>
+
+    <div>
+        <form action="~/Admin/uCat" class="form-horizontal" role="form" method="post">
+           
+            @Html.HiddenFor(m => Model.Id)
+            <div class="form-group">
+                <label class="control-label col-lg-3" for="name">Name: </label>
+                <div class="col-lg-4">
+                    <input type="text" class="form-control" data-val-required="Field is required" required name="name" placeholder=@Model.Name />
+                </div>
+            </div>
+
+             <div class="form-group">
+                <div class="col-lg-offset-3 col-lg-10">
+                    <input type="submit" value="Update" class="btn btn-success" />
+                </div>
+            </div>
+
+        </form>
+    </div>
+   
+    <div>
+    <h3>@Model.Name</h3>
+    <table border="1" style="margin-top:15%; width:80%; line-height:22PX;">
+
+        <tr><th><h5>ID</h5></th><th><h5>Name</h5></th><th><h5>Delete</h5></th><th><h5>Update</h5></th><th><h5>Details</h5></th></tr>
+
+        @foreach(Sub_Categories c in Model.Sub_Categories)
+        {
+            <tr>
+                <td><h5>@c.Id</h5></td>
+                <td><h6>@c.Name</h6></td>
+                <td>
+                    <a style="font-size:16px; color:red" href="~/Admin/B_Details/@c.Id">View Details</a>
+                </td>
+                <td>
+                    <a style="font-size:16px; color:red" href="~/Admin/B_Delete/@c.Id">Delete</a>
+                </td>
+                <td>
+                    <a style="font-size:16px; color:green" href="~/Admin/B_Update/@c.Id">Update</a>
+                </td>
+            </tr>
+        }
+
+
+    </table>
+
+    </div>
+
+
+
+
+</body>
+</html>

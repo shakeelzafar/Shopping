@@ -1,0 +1,172 @@
+﻿@using MVC.Models;
+ @model List<Cart>
+
+    @{
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link href="~/Content/bootstrap.css" rel="stylesheet">
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <title></title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body style="background :url('../../images/my.jpg') center">
+
+
+    <!-- Navigation -->
+    <!-- End Navigation -->
+
+    <div class="container main-container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12">
+
+                <!-- Best Seller -->
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="no-padding">
+                        <span class="title">BEST SELLER</span>
+                    </div>
+                    <div class="thumbnail col-lg-12 col-md-12 col-sm-6 text-center">
+                        <a href="detail.html" class="link-p">
+                            <img src="~/images/Kids/img_ (26).jpg" alt="">
+                        </a>
+                        <div class="caption prod-caption">
+                            <h4><a href="detail.html">Penn State College T-Shirt</a></h4>
+                            <p>Shirt is Taken From Junaid Jamshaid</p>
+                            <p>
+                                <div class="btn-group">
+                                    <a href="#" class="btn btn-default">896</a>
+                                    <a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Buy</a>
+                                </div>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="thumbnail col-lg-12 col-md-12 col-sm-6 visible-sm text-center">
+                        <a href="detail.html" class="link-p">
+                            <img src="images/product-9.jpg" alt="">
+                        </a>
+                        <div class="caption prod-caption">
+                            <h4><a href="detail.html">Ohio State College T-Shirt</a></h4>
+                            <p>Shirt is Taken From Junaid Jamshaid</p>
+                            <p>
+                                <div class="btn-group">
+                                    <a href="#" class="btn btn-default">925</a>
+                                    <a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Buy</a>
+                                </div>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Best Seller -->
+
+            </div>
+
+            <div class="clearfix visible-sm"></div>
+
+            <!-- Cart -->
+            @if (Session["user"] != null)
+            {
+                MyEntities ctx = new MyEntities();
+                IEnumerable<Cart> list = null;
+                int id = (Int32)HttpContext.Current.Session["Id"];
+                list = ctx.Cart.Where(x => x.CustId == id && x.Type!="sold").Select(x => x);
+               
+
+                int sum = 0;
+                int p = 0;
+
+                <div class="col-lg-9 col-md-9 col-sm-12">
+                    <div class="col-lg-12 col-sm-12">
+                        <span class="title">SHOPPING CART</span>
+                    </div>
+                    <div class="col-lg-12 col-sm-12 hero-feature" style="fill-opacity:initial; background-color:cyan">
+                        <form action="~/Home/Purchase/@id" method="post" name="form1">
+                        <table class="table table-bordered tbl-cart">
+                            <thead>
+                                <tr>
+                                    <td>ID</td>
+                                    <td>Product Name</td>                                     
+                                    <td>Size</td>
+                                    <td>Color</td>
+                                  
+                                    <td>Unit Price</td>
+                                    
+                                   
+                                </tr>
+                            </thead>
+                            @foreach (Cart cart in list)
+                            {
+                                
+                                <tbody>
+                                    @{
+                               
+                                        Product kid=null;
+                                try
+                                {
+                                     kid= ctx.Product.First(x => x.Id == cart.ItemId);
+                                }
+                                catch (Exception e) {  }
+                                if (kid == null)
+                                { break; }
+                                int myT=(Int32)kid.Price;
+                                sum = sum + myT;
+                                   
+                                    }
+                                    <tr>
+                                         
+                                        <td> @cart.Id </td>
+                                        <td><a href="~/Products/ProductInfo/@kid.Id"></a> @kid.Name</td>
+                                        <td>
+                                            <select name="">
+                                                <option value="" selected="selected">Medium</option>
+
+                                            </select>
+                                        </td>
+                                        <td>-</td>
+                                         
+                                        <td class="price">@kid.Price</td>
+                                       
+                                    </tr>
+
+                                  
+                                </tbody>
+                                 
+                            }
+                            <tr>
+                                <td colspan="6" align="right">Total</td>
+                                <td class="total" colspan="2">
+                                    <b>@sum</b>
+                                </td>
+                            </tr>
+                        </table>
+                            <div class="form-group btns-cart">
+
+                                <button type="submit" class="btn btn-primary">Purchase </button>
+                            </div>
+                            </form>
+                        
+
+                    </div>
+                </div>
+            <!-- End Cart -->
+
+            }
+            else
+            { <h1>Please LogIn to Buy SomeThing</h1>}
+        </div>
+    </div>
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "SignIn";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet">
+    <script src="~/Scripts/bootstrap.js"></script>
+</head>
+<body >
+    <h2>@ViewBag.str</h2>
+    <div>
+        <h3 style="margin-left:200px; font-weight:500 ">Sign In</h3>
+        <hr style="margin-left:200px; width:900px" />
+    </div>
+
+    <div>
+        <form action="../User/Validate" class="form-horizontal" role="form" method="post">
+
+            <div class="form-group">
+                
+                <label class="control-label col-lg-3" for="email">Email:</label>
+                <div class="col-lg-3">
+                    <input type="email" class="form-control" name="email" placeholder="Enter Email" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-lg-3" for="pwd">Password:</label>
+                <div class="col-lg-3">
+                    <input type="password" class="form-control" name="password" placeholder="Enter Password" />
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-lg-offset-3 col-lg-10">
+
+                        <br><br><input type="submit" value="Submit" class="btn btn-default" />
+                        <br> <br> <a href="../User/SignUp">Have you not got an Account Yet...? Get Registered Here.</a>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</body>
+</html>

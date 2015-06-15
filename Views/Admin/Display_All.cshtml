@@ -1,0 +1,19 @@
+﻿@{
+    Layout="~/Views/Shared/_Admin.cshtml"
+}
+
+@foreach (var emp in Model)
+{
+   <ul>
+    <li style="font-size:16px">@emp.Id &nbsp; @emp.Name &nbsp; @emp.Password &nbsp;@emp.Address &nbsp;@emp.Country &nbsp; @emp.Year &nbsp;@emp.Note</li>
+   </ul>
+}
+<div>
+    @Html.ActionLink("Add New", "AddItem")
+    <table border="1">
+        @foreach (var i in Model)
+        {
+            <tr><td>@i.Id</td><td>@i.Name</td><td>@i.Price</td><td>@Html.ActionLink("Edit", "EditItem", new { id = i.Id })</td><td>@Html.ActionLink("Delete", "DeleteItem", new { id = i.Id })</td></tr>
+        }
+    </table>
+</div>

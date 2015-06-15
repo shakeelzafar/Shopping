@@ -1,0 +1,27 @@
+﻿@using MVC.Models
+@model List<Sub_Categories>
+@{
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+<html>
+ 
+<body>
+        <div class="form-group">
+            <label class="col-lg-3 control-label" style="font-size:16px">Sub_Categories: </label>
+               <div class="col-lg-3 ">
+                  <select class="from-control " name="sub_category">
+                      @foreach (var v in Model)
+                      {
+                          <option>@v.Name</option>
+                      }
+                   </select>
+               </div>
+           </div>
+ 
+</body>
+</html>
+
+
+
+
+

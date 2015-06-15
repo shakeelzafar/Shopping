@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+
+}
+@*
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title></title>
+        <link href="~/Content/bootstrap.css" rel="stylesheet">
+        <script src="~/Scripts/bootstrap.js"></script>
+    </head>
+    <body>
+
+        <div>
+            <h3 style="margin-left:200px; font-weight:500 ">Update Products</h3>
+            <hr style="margin-left:200px; width:900px" />
+        </div>
+
+        <div>
+            @using (Html.BeginForm("Edit", "Item", FormMethod.Post))
+            {
+                @Html.HiddenFor(m => m.Id)
+                @Html.LabelFor(m => m.Name)
+                @Html.EditorFor(m => m.Name)
+
+                @Html.LabelFor(m => m.Price)
+                @Html.EditorFor(m => m.Price)
+                <input type="submit" value="Save" />
+            }
+        </div>
+    </body>
+    </html>
+*@

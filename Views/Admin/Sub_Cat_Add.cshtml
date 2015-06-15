@@ -1,0 +1,67 @@
+﻿@using MVC.Models
+@{
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+<html>
+<head>
+    <title>
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+</head>
+<body>
+    <div>
+        <h3 style="margin-left:200px; font-weight:500 ">Add Category</h3>
+        <hr style="margin-left:200px; width:900px" />
+    </div>
+
+    <div>
+        <form action="~/Admin/SubCatAdd" class="form-horizontal" role="form" method="post">
+            @{
+                MyEntities ctx = new MyEntities();
+                IEnumerable<Categories> list = ctx.Categories.ToList();
+            }
+            <div class="form-group">
+                <label class="col-lg-3 control-label" style="font-size:16px">Categories: </label>
+                <div class="col-lg-3 ">
+                    <select class="from-control " name="category">
+                        @foreach (var v in list)
+                        {
+                            <option>@v.Name</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-lg-3" for="sub_cat">Add New:</label>
+                <div class="col-lg-4">
+                    <input type="text" class="form-control" data-val-required="Field is required" required name="sub_cat" placeholder="Enter Sub Category" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-lg-offset-3 col-lg-10">
+                    <input type="submit" value="Submit" class="btn btn-default" />
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+
+</body>
+</html>

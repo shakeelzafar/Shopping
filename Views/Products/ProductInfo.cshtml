@@ -1,0 +1,52 @@
+﻿
+    @using MVC.Models
+    @model MVC.Models.Product
+ 
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <title>@ViewBag.ProInfo</title>
+            <link href="~/Content/bootstrap.css" rel="stylesheet">
+            <script src="~/Scripts/bootstrap.js"></script>
+        </head>
+        <body>
+            <h2>@ViewBag.ProInfo</h2>
+            <form class="form-group" action="~/Home/AddToCart?itemId=@Model.Id&type=&CustId=@HttpContext.Current.Session["Id"]" method="post">
+
+                <table>
+                    <tr>
+                        <td><img src="~/images/@ViewBag.str" alt="Image" style="height: 400px; width: 450px; margin-left: 250px;margin-top: 25px;">
+                        <td>
+                        <td>
+                            <div style="margin-left: 50px; margin-top: 80px;font-family: 'Bodoni MT'; font-size: 20px; font-style: italic;">
+                                <p> Name: @Model.Name</p>
+                                <p style="font-family: 'Bodoni MT'; font-size: 20px; font-style: italic;"> Color:  Green</p>
+                                <p style="font-family: 'Bodoni MT'; font-size: 20px; font-style: italic;"> Description: @Model.Description</p>
+                                <p style="font-family: 'Bodoni MT'; font-size: 20px; font-style: italic;"> Price: @Model.Price </p>
+                                <p style="font-family: 'Bodoni MT'; font-size: 20px; font-style: italic;">
+
+                                    <label>Size: Small </label>
+                                </p>
+                                <p>
+                                    <iframe src="http://www.facebook.com/plugins/like.php?href=http://www.facebook.com/step.friends&amp;layout=standard&amp;show_faces=&amp;width=230&amp;action=like&amp;colorscheme=light&amp;height=25&amp;font=&amp;locale=en_US&amp;ref=" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:230px; height:25px;" allowtransparency="true"></iframe>
+                                </p>
+                                @if(Session["Id"]!=null)
+                                    {
+                                <div class="mybutton" style="margin-left: 80px;margin-top: 30px">
+                                    <input type="submit" value="Add To Cart" class="button" />
+                                </div>
+                                 }
+                            </div>
+                        </td>
+                        <td></td>
+                    </tr>
+
+                </table>
+
+            </form>
+
+        </body>
+
+    </html>
+    */
+}

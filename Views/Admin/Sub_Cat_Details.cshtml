@@ -1,0 +1,68 @@
+﻿@using MVC.Models
+@model List<Brand>
+@{
+    ViewBag.Title = "viewProduct";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+ 
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+
+    <div>
+        <form action="~/Admin/SearchP" class="form-horizontal" role="form" method="post">
+
+
+            <div class="form-group">
+
+                <div class="col-lg-5 pull-left">
+                    <input type="text" class="form-control" name="name" placeholder="Search" />
+                </div>
+                <div class="col-lg- pull-left">
+                    <input type="submit" value="Go" class="btn btn-default" />
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <h1></h1>
+    <h2>Sub_Categories</h2>
+
+
+    <div>
+        @{
+
+            MyEntities ctx = new MyEntities();
+            int pId = ViewBag.CatId;
+            Sub_Categories cat = ctx.Sub_Categories.First(x => x.Id == pId);
+        }
+        <h3>@cat.Name</h3>
+        <table border="1" style="margin-top:10%; width:70%; ">
+
+            <tr><th><h5>ID</h5></th><th><h5>Name</h5></th><th><h5>Delete</h5></th><th><h5>Update</h5></th><th><h5>Details</h5></th></tr>
+
+            @foreach (Brand c in cat.Brand)
+            {
+                <tr>
+                    <td><h5>@c.Id</h5></td>
+                    <td><h6>@c.Name</h6></td>
+                    <td>
+                        <a style="font-size:16px; color:red" href="~/Admin/B_Details/@c.Id">View Details</a>
+                    </td>
+                    <td>
+                        <a style="font-size:16px; color:red" href="~/Admin/B_Delete/@c.Id">Delete</a>
+                    </td>
+                    <td>
+                        <a style="font-size:16px; color:green" href="~/Admin/Brand_Update/@c.Id">Update</a>
+                    </td>
+                </tr>
+            }
+
+
+        </table>
+
+    </div>
+</body>
+</html>

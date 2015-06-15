@@ -1,0 +1,145 @@
+﻿@using MVC.Models
+@using System.Data
+<!DOCTYPE html>
+@{Customer c = (Customer)HttpContext.Current.Session["user"];}
+<html>
+<head>
+  
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    
+    
+    <link href="~/Content/bootstrap.css" rel="stylesheet"> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script> 
+ 
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body style="background-color:sandybrown">
+
+
+    <div class="container-fluid">
+
+        <nav class="navbar navbar-inverse" role="navigation">
+            <div class="navbar-brand">
+                <a class="navbar-text" href="#"> </a>
+                <img src="~/images/logo.jpg" alt="Chania" style="width:100px; height:50px">
+            </div>
+
+            @if (Session["user"] == null)
+            {
+                <ul class="nav navbar-nav pull-left list-inline > li">
+                    <li><a href="~/Home/Index">Home</a></li>
+                    <li><a href="~/User/SignIn">Sign in</a></li>
+                    <li><a href="~/User/SignUp">Register</a></li>
+                    <li><a href="~/Home/Contact">Contact</a></li>
+
+                    <li><a href="~/Products/Index">Products</a></li>
+                    <li><a href="../../Home/Cart">Cart</a></li>
+
+                </ul>
+
+            }
+            else
+            {
+                <ul class="nav navbar-nav pull-Left list-inline > li">
+                    <li><a href="~/Home/Index">Home</a></li>
+                    <li><a href="~/User/LogOut">Sign Out</a></li>
+                    <li><a href="~/Home/Contact">Contact</a></li>
+                    <li><a href="~/Products/Index">Products</a></li>
+                    <li><a href="../../Home/Cart">Cart</a></li>
+
+                </ul>
+            }
+
+            <div class="form-group">
+
+                <div class="col-lg-5 pull-left">
+                    <input type="text" id="ser" class="form-control" name="name" placeholder="Search" />
+                </div>
+
+            </div>
+        </nav>
+
+
+        <div id='topnavDIV' class='topnavContainer'>
+
+            @{
+                MyEntities ctx = new MyEntities();
+                IEnumerable<Categories> cat = ctx.Categories.ToList();
+            }
+
+            <ul style="list-style:none" class="dropdown">
+                @foreach (Categories kat in cat)
+                {
+                    <li style="text-decoration:none; float:left; padding-left:10px">
+                        <div class="dropdown">
+                            <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">
+                                @kat.Name
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                @foreach (Sub_Categories sub in kat.Sub_Categories)
+                                {
+
+
+                                    <li><a href="~/Products/Brands/@sub.Id">@sub.Name</a></li>
+
+
+                                }
+                            </ul>
+                        </div>
+                    </li>
+
+                }
+            </ul>
+
+        </div>
+
+    </div>
+    <br><br>
+
+
+
+    <div class='row' style="background-color:rosybrown">
+
+        @RenderBody()
+        <div id="result"> </div>
+        @Scripts.Render("~/bundles/jquery")
+
+        <script>
+
+            $(document).ready(function () {
+
+                $('#checking').hide();
+
+                $('#ser').change(function () {
+
+                    var Name = $('#ser').val();
+
+                    //alert('User Name ='+ userName);
+                    $('#result').load('/Products/Search?name=' + Name)
+
+                });
+
+            });
+        </script>
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
+
+    </div>
+    
+
+
+
+
+
+
+</body>
+</html>

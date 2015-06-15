@@ -1,0 +1,33 @@
+﻿@model MVC.Models.Product
+
+@{
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div class="box">
+<form action="~/Admin/dPro/@Model.Id" class="form-horizontal" role="form" method="post">
+    <h4>Product</h4>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Color_Id)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Price)
+    </div>
+    <input type="submit" value="Delete" /> 
+ </form>
+    
+</div>

@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "viewProduct";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+@using MVC.Models;
+<div>
+    
+    <form action="~/Admin/SearchP" class="form-horizontal" role="form" method="post">
+
+
+        <div class="form-group">
+
+            <div class="col-lg-5 pull-left">
+                <input type="text" class="form-control" name="name" placeholder="Search" />
+            </div>
+            <div class="col-lg- pull-left">
+                <input type="submit" value="Go" class="btn btn-default" />
+            </div>
+        </div>
+
+    </form>
+</div>
+<h1>      </h1>
+<h2>All Customers</h2>
+
+@{
+    MyEntities my = new MyEntities();
+    IEnumerable<Product> myList = my.Product.ToList();
+}
+
+<div >
+    <table border="1" style="margin-top:10%; width:80%; line-height:22PX;">
+
+        <tr><th><h5>ID</h5></th><th><h5>Name</h5></th><th><h5>Description</h5></th><th><h5>Color</h5></th><th><h5>Size</h5></th><th><h5>Price</h5></th><th><h5>Brand</h5></th><th><h5>DELETE</h5></th><th><h5>UPDATE</h5></th></tr>
+
+        @foreach (Product c in myList)
+        {
+            <tr>
+                <td><h5>@c.Id</h5></td>
+                <td><h6>@c.Name</h6></td>
+                <td><h6>@c.Description</h6></td>
+                <td> <select><option>Yellow</option></select></td>
+                <td><select><option>Medium</option></select></td>
+                <td><h6>@c.Price</h6></td>
+                <td><h6></h6></td>
+                <td>
+                    <a style="font-size:16px; color:red" href="~/Admin/deletePro/@c.Id">Delete</a>
+                </td>
+                <td>
+                    <a style="font-size:16px; color:green" href="~/Admin/updatePro/@c.Id">Update</a>
+                </td>
+            </tr>
+        }
+
+
+    </table>
+
+</div>

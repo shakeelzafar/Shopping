@@ -1,0 +1,42 @@
+﻿@using MVC.Models
+@model List<Product>
+@{
+    ViewBag.Title = "viewProduct";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+ 
+<h1>      </h1>
+<h2>Search Results</h2>
+
+ 
+<div >
+    <table border="1" style="margin-top:10%; width:80%; line-height:22PX;">
+        <thead>
+        <tr><th><h5>ID</h5></th><th><h5>Name</h5></th><th><h5>Description</h5></th><th><h5>Color</h5></th><th><h5>Size</h5></th><th><h5>Price</h5></th><th><h5>Brand</h5></th><th><h5>DELETE</h5></th><th><h5>UPDATE</h5></th></tr>
+            </thead>
+      
+            
+        @foreach (Product c in Model)
+        { 
+            <tr>
+                <td><h5>@c.Id</h5></td>
+                <td><h6>@c.Name</h6></td>
+                <td><h6>@c.Description</h6></td>
+                <td> <select><option>Yellow</option></select></td>
+                <td><select><option>Medium</option></select></td>
+                <td><h6>@c.Price</h6></td>
+                <td><h6></h6></td>
+                <td>
+                    <a style="font-size:16px; color:red" href="~/Admin/deletePro/@c.Id">Delete</a>
+                </td>
+                <td>
+                    <a style="font-size:16px; color:green" href="~/Admin/updatePro/@c.Id">Update</a>
+                </td>
+            </tr>
+        }
+       
+
+    </table>
+
+</div>

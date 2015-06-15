@@ -1,0 +1,74 @@
+﻿@using MVC.Models
+@model List<Product>
+@{
+    Layout = null;
+    MyEntities ctx = new MyEntities();
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title></title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet">
+    <script src="~/Scripts/bootstrap.js"></script>
+</head>
+<body>
+
+
+
+    <div class='container-fluid master'>
+        <h3></h3>
+        <div class='row'>
+
+            <div class='col-lg-2 col-md-2  menu'>
+                <div id='menyen'>
+                    <h3>Search Results</h3>
+
+                </div>
+            </div>
+            <div class="col-lg-offset-2">
+                <article class="grid_@Model.Count() pull-left">
+
+
+                    <table class="Responsive-table">
+                        @for (int i = 0, k = 0; i <3 && k<Model.Count() ; i++)
+                        {
+                            
+                            int temp = Model[k].Brand_Id;
+
+                            int s_Id = ctx.Brand.First(x => x.Id == temp).Sub_Cat_Id;
+                            int cat_Id = ctx.Sub_Categories.First(x => x.Id == s_Id).Cat_Id;
+                            <tr>
+                                @for (int j = 0; j < 4 && k<Model.Count(); j++)
+                                { 
+                                    String pic_d = "img_" + cat_Id + "_" + s_Id + "_" + temp + "_(" + Model[k].Id + ").jpg";
+                                    <td>
+                                        <p style="margin-left:70px; font-family:Arial; font:xx-large">@Model[k].Name</p>
+                                        <a href="~/Products/ProductInfo?sid=@Model[k].Id&name=@pic_d"><img src="~/images/@pic_d" alt="Image" style="margin-bottom: 35px; float: left;  margin-right: 35px; height: 300px; width: 250px;" /></a>
+                                        <p style="margin-left:80px; font-family:Arial; font:xx-large"><b>Pkr: </b>@Model[k].Price</p><br>
+
+                                    </td>
+                                    k=k+1;
+                                }
+                            </tr>
+                        }
+                    </table>
+                </article>
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+
+</body>
+
+
+
+
+
+</html>
+}

@@ -1,0 +1,35 @@
+﻿@{
+    Layout = "~/Views/Shared/_Admin.cshtml";
+ }
+<html>
+<head>
+    <title>
+</title>    </head>
+<body >
+    <div>
+        <h3 style="margin-left:200px; font-weight:500 ">Add Category</h3>
+        <hr style="margin-left:200px; width:900px" />
+    </div>
+
+    <div>
+        <form action="~/Admin/cAdd" class="form-horizontal" role="form" method="post">
+
+            <div class="form-group">
+                <label class="control-label col-lg-3" for="name">Name: </label>
+                <div class="col-lg-4">
+                    <input type="text" class="form-control" data-val-required="Field is required" required name="name" placeholder="Enter Name" />
+                </div>
+            </div>
+
+            
+            <div class="form-group">
+                <div class="col-lg-offset-3 col-lg-10">
+                    <input type="submit" value="Submit" class="btn btn-default" />
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+﻿@{
+    ViewBag.Title = "Add Customer";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet">
+    <script src="~/Scripts/bootstrap.js"></script>
+</head>
+<body>
+
+    <div>
+        <h3 style="margin-left:200px; font-weight:500 ">Add Customer</h3>
+        <hr style="margin-left:200px; width:900px" />
+    </div>
+
+    <div>
+        <form action="~/Admin/AddCustomer" class="form-horizontal" role="form" method="post">
+
+            <div class="form-group">
+                <label class="control-label col-lg-3"  for="name">Name: </label>
+                <div class="col-lg-4">
+                    <input type="text" class="form-control" data-val-required="Field is required" required name="name" placeholder="Enter Name" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-lg-3" for="email">Email:</label>
+                <div class="col-lg-4">
+                    <input type="email" class="form-control" data-val-required="Field is required" required name="email" placeholder="Enter Email" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-lg-3" for="pwd">Password:</label>
+                <div class="col-lg-4">
+                    <input type="password" class="form-control" data-val-required="Field is required"  required name="password" placeholder="Enter Password" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-lg-3" for="address">Address:</label>
+                <div class="col-lg-4">
+                    <input type="text" class="form-control" data-val-required="Field is required" required name="address" placeholder="Enter Address" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-lg-3" for="country">Country: </label>
+                <div class="col-lg-4">
+                    <input type="text" class="form-control" data-val-required="Field is required" required name="country" placeholder="Enter Country" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-lg-3" for="gender">Gender:</label>
+                <div class="col-lg-1">
+                    <label class="control-label col-lg-10" for="gender">Male:</label>
+                    <input style="margin-top:10px" type="radio" class="btn btn-primary" name="gender" />
+                </div>
+                <div class="col-lg-3">
+                    <label class="control-label col-lg-3" for="gender">Female:</label>
+                    <input style="margin-top:10px" type="radio" class="btn btn-primary" name="gender" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-lg-3 control-label">Year: </label>
+                <div class="col-lg-3">
+                    <select class="from-control input-sm" name="year">
+                        <option>-Select-</option>
+                        <option>2015</option>
+                        <option>2014</option>
+                        <option>2013</option>
+                        <option>2012</option>
+                        <option>2011</option>
+                        <option>2010</option>
+                        <option>2009</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-lg-3" for="note">Note:</label>
+                <div class="col-lg-4">
+                    <textarea class="form-control" name="note" placeholder="Write Your Message"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-lg-10">
+                    <div class="checkbox">
+                        <label><input type="checkbox"> Remember me</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-lg-offset-3 col-lg-10">
+                    <input type="submit" value="Submit" class="btn btn-default" />
+                </div>
+            </div>
+
+        </form>
+    </div>
+</body>
+</html>
